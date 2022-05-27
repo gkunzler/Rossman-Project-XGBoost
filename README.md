@@ -1,5 +1,5 @@
 # Rossman-Project-XGBoost
-**Business Problem:**  Rossmann is one of the largest drug store chains in Europe with more than 4000 stores. The company wants to settle a budget to renovate the stores, based on the sales that the stores will make in the next weeks. This project was developed to predict the sales from the stores in the next 6 weeks and it was inspired in a competition from Kaggle. Data was downloaded from CSVs files, and it contains the information below. Sales is the response variable, and the goal of the project is to predict them, considering the other features.
+**Business Problem:**  Rossmann is one of the largest drug store chains in Europe with more than 4000 stores. The company wants to settle a budget to renovate the stores, based on the sales that the stores will make in the next weeks. This project was developed to predict the sales from the stores in the next 6 weeks and it was inspired in a competition from Kaggle (https://www.kaggle.com/c/rossmann-store-sales). Data was downloaded from CSVs files, and it contains the information below. Sales is the response variable, and the goal of the project is to predict them, considering the other features.
 
 **Id** - an Id that represents a (Store, Date) duple within the test set
 
