@@ -103,4 +103,4 @@ The table below shows 10 stores and the predictions of sales, worst scenarios, b
 
 
 **Deploy model to production:** The model was deployed in Heroku cloud, and a bot in telegram was created to access the results. The user needs to enter / + the number of the store, and a message with the sales predictions will be sent back to him. 
-Image
+![rossman bot](https://github.com/gkunzler/Rossman-Project-XGBoost/blob/main/rossman_bot_telegram.JPG)
