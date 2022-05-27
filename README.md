@@ -48,20 +48,23 @@ holidays and weekends. a = public holiday, b = Easter holiday, c = Christmas, 0 
 3)Stores sell more in the last days of the month - **False**
 
 **Data Preparing:**  Features that have a large range were rescaled. This step is important so that the model doesn’t provide a larger weight to these features. The features "competition_distance" and "competition_time_month" were rescaled using RobustScaler, that is robust to outliers. The features "promo_time_weeks" and "year" were rescaled using MinMaxScaler.
+
 Categorical features were transformed into numerical features, so that they can also be used in the model. The features "state_holiday", "store_type" and "assortment" were transformed respectively by the "one hot encoding", "label encoding" and "ordinal encoding" algorithms.
 Features that have cyclical nature, such as "day_of_week", "month, day" and "week_of_year" were also transformed using sine and cosine, so that the machine learning model could better understand them.
+
 The response variable "sales" was normalized applying the logarithm to the original values. Machine Learning models work better with features that are normalized.
-Feature Selection: Features that were considered relevant to explain the response variable "sales" were selected to be used in the machine learning model.  The selection was made using Boruta, that is an algorithm designed to automatically perform feature selection on a dataset. The features selected were: "store", "promo", "store_type", "assortment", "competition_distance", "competition_open_since_month", "competition_open_since_year", "promo2","promo2_since_week", "promo2_since_year", "competition_time_month", "promo_time_weeks", "day_of_week_sin", "day_of_week_cos", "month_sin", "month_cos", "day_sin",  "day_cos", "week_of_year_sin", "week_of_year_cos"
+
+**Feature Selection:** Features that were considered relevant to explain the response variable "sales" were selected to be used in the machine learning model.  The selection was made using Boruta, that is an algorithm designed to automatically perform feature selection on a dataset. The features selected were: "store", "promo", "store_type", "assortment", "competition_distance", "competition_open_since_month", "competition_open_since_year", "promo2","promo2_since_week", "promo2_since_year", "competition_time_month", "promo_time_weeks", "day_of_week_sin", "day_of_week_cos", "month_sin", "month_cos", "day_sin",  "day_cos", "week_of_year_sin", "week_of_year_cos"
 
 **Machine Learning Modeling:** Four models were implemented, and the error from these models were calculated, to compare which model should be used.
 
 **-Average Model:** It considers the mean sales value from each store, to predict the sales.
 
-**Linear --Regression Model:**  Linear regression models use a straight line to predict the sales. During the training stage, if this model feels like one feature is particularly important, the model may place a large weight to the feature. 
+**-Linear Regression Model:**  Linear regression models use a straight line to predict the sales. During the training stage, if this model feels like one feature is particularly important, the model may place a large weight to the feature. 
 
-**-Linear regression Regularized (Lasso):** Lasso is a modification of linear regression, where the model is penalized for the sum of absolute values of the weights.
+**-Linear Regression Regularized (Lasso):** Lasso is a modification of linear regression, where the model is penalized for the sum of absolute values of the weights.
 
-**-XGBoost regression:** XGBoost is an implementation of the gradient boosted trees algorithm. Gradient boosting is a supervised learning algorithm, which attempts to accurately predict a target variable.
+**-XGBoost Regression:** XGBoost is an implementation of the gradient boosted trees algorithm. Gradient boosting is a supervised learning algorithm, which attempts to accurately predict a target variable.
 For each model the errors MAE, MAPE and RMSE were calculated.  The errors consider the difference between what the model is predicting and the actual sales value.
 
 **Cross validation:** To verify the error in the different data partitions, five different data groups were created to be the testing data, and the error was calculated to each of these parts.  The average error was calculated in the table below:
