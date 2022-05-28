@@ -32,7 +32,7 @@ holidays and weekends. a = public holiday, b = Easter holiday, c = Christmas, 0 
 
 -**PromoInterval** - describes the consecutive intervals Promo2 is started, naming the months the promotion is started anew. E.g. "Feb, May, Aug, Nov" means each round starts in February, May, August, November of any given year for that store
 
--**Sales** - the turnover for any given day (this is what you are predicting) 
+-**Sales** - the turnover for any given day (this is what is going to be predicted) 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
