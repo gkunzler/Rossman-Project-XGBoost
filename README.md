@@ -43,9 +43,15 @@ holidays and weekends. a = public holiday, b = Easter holiday, c = Christmas, 0 
 **Descriptive analyses and data cleaning:** The purpose of this step was to get familiarized with the data, and fill blank fields based on the business assumptions. Data was divided into categorical and numerical features.  To the numerical features, statistical numbers such as mean, median, standard deviation were calculated.  To the categorical features, boxplots were plotted to describe the data.**Feature Engineering:** The features "year", "month", "day", "week_of_year", "year_week", "competition_time_days" and "competition_time_month" were created from the original features. These features can be useful to explain the sales. 
 
 **Exploratory Data Analysis:** Univariate, bivariate and multivariate analysis were done to understand how features are related to the sales and to each other. Some hypotheses were created to validate how some of the features are related to the sales:
+
 1)Stores that have competition nearby sell less - **False**
+![h1](https://github.com/gkunzler/Rossman-Project-XGBoost/blob/main/img/hypothesys1.JPG)
+
 2)Stores sell more in the second semester of the year - **False**
+![h2](https://github.com/gkunzler/Rossman-Project-XGBoost/blob/main/img/hypothesis2.JPG)
+
 3)Stores sell more in the last days of the month - **False**
+![h3](https://github.com/gkunzler/Rossman-Project-XGBoost/blob/main/img/hypothesis3.JPG)
 
 **Data Preparing:**  Features that have a large range were rescaled. This step is important so that the model doesn’t provide a larger weight to these features. The features "competition_distance" and "competition_time_month" were rescaled using RobustScaler, that is robust to outliers. The features "promo_time_weeks" and "year" were rescaled using MinMaxScaler.
 
