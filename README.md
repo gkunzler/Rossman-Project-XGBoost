@@ -1,36 +1,38 @@
 # Rossman Project- Sales Prediction
 **Business Problem:**  Rossmann is one of the largest drug store chains in Europe with more than 4000 stores. The company wants to settle a budget to renovate the stores, based on the sales that the stores will make in the next weeks. This project was developed to predict the sales from the stores in the next 6 weeks and it was inspired in a competition from Kaggle (https://www.kaggle.com/c/rossmann-store-sales). Data was downloaded from CSVs files, and it contains the information below. Sales is the response variable, and the goal of the project is to predict them, considering the other features.
 
-**Id** - an Id that represents a (Store, Date) duple within the test set
+-**Id** - an Id that represents a (Store, Date) duple within the test set
 
-**Store** - a unique Id for each store
+-**Store** - a unique Id for each store
 
-**Customers** - the number of customers on a given day
+-**Customers** - the number of customers on a given day
 
-**Open** - an indicator for whether the store was open: 0 = closed, 1 = open
+-**Open** - an indicator for whether the store was open: 0 = closed, 1 = open
 
-**StateHoliday** - indicates a state holiday. Normally all stores, with few exceptions, are closed on state holidays. Note that all schools are closed on public 
+-**StateHoliday** - indicates a state holiday. Normally all stores, with few exceptions, are closed on state holidays. Note that all schools are closed on public 
 holidays and weekends. a = public holiday, b = Easter holiday, c = Christmas, 0 = None
 
-**SchoolHoliday** - indicates if the (Store, Date) was affected by the closure of public schools
+-**SchoolHoliday** - indicates if the (Store, Date) was affected by the closure of public schools
 
-**StoreType** - differentiates between 4 different store models: a, b, c, d
+-**StoreType** - differentiates between 4 different store models: a, b, c, d
 
-**Assortment** - describes an assortment level: a = basic, b = extra, c = extended
+-**Assortment** - describes an assortment level: a = basic, b = extra, c = extended
 
-**CompetitionDistance** - distance in meters to the nearest competitor store
+-**CompetitionDistance** - distance in meters to the nearest competitor store
 
-**CompetitionOpenSince [Month/Year]** - gives the approximate year and month of the time the nearest competitor was opened
+-**CompetitionOpenSince [Month/Year]** - gives the approximate year and month of the time the nearest competitor was opened
 
-**Promo** - indicates whether a store is running a promo on that day
+-**Promo** - indicates whether a store is running a promo on that day
 
-**Promo2** - Promo2 is a continuing and consecutive promotion for some stores: 0 = store is not participating, 1 = store is participating
+-**Promo2** - Promo2 is a continuing and consecutive promotion for some stores: 0 = store is not participating, 1 = store is participating
 
-**Promo2Since[Year/Week]** - describes the year and calendar week when the store started participating in Promo2
+-**Promo2Since[Year/Week]** - describes the year and calendar week when the store started participating in Promo2
 
-**PromoInterval** - describes the consecutive intervals Promo2 is started, naming the months the promotion is started anew. E.g. "Feb, May, Aug, Nov" means each round starts in February, May, August, November of any given year for that store
+-**PromoInterval** - describes the consecutive intervals Promo2 is started, naming the months the promotion is started anew. E.g. "Feb, May, Aug, Nov" means each round starts in February, May, August, November of any given year for that store
 
-**Sales** - the turnover for any given day (this is what you are predicting) 
+-**Sales** - the turnover for any given day (this is what you are predicting) 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Assumptions:** Stores that have “Na” in “competition_distance”, don’t have any competitors nearby.
 
@@ -38,9 +40,7 @@ holidays and weekends. a = public holiday, b = Easter holiday, c = Christmas, 0 
 
 **Loading data:** Three files that contain information from the stores, training and testing data were downloaded from the Kaggle platform. 
 
-**Descriptive analyses and data cleaning:** The purpose of this step was to get familiarized with the data, and fill blank fields based on the business assumptions. Data was divided into categorical and numerical features.  To the numerical features, statistical numbers such as mean, median, standard deviation were calculated.  To the categorical features, boxplots were plotted to describe the data.
-
-**Feature Engineering:** The features "year", "month", "day", "week_of_year", "year_week", "competition_time_days" and "competition_time_month" were created from the original features. These features can be useful to explain the sales. 
+**Descriptive analyses and data cleaning:** The purpose of this step was to get familiarized with the data, and fill blank fields based on the business assumptions. Data was divided into categorical and numerical features.  To the numerical features, statistical numbers such as mean, median, standard deviation were calculated.  To the categorical features, boxplots were plotted to describe the data.**Feature Engineering:** The features "year", "month", "day", "week_of_year", "year_week", "competition_time_days" and "competition_time_month" were created from the original features. These features can be useful to explain the sales. 
 
 **Exploratory Data Analysis:** Univariate, bivariate and multivariate analysis were done to understand how features are related to the sales and to each other. Some hypotheses were created to validate how some of the features are related to the sales:
 1)Stores that have competition nearby sell less - **False**
