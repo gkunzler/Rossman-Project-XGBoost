@@ -1,7 +1,8 @@
 ![logo](https://github.com/gkunzler/Rossman-Project-XGBoost/blob/main/img/rossmann%20logo.png)
 
 # Rossman Project - Sales Prediction
-**Business Problem:**  Rossmann is one of the largest drug store chains in Europe with more than 4000 stores. The company wants to settle a budget to renovate the stores, based on the sales that the stores will make in the next weeks. This project was developed to predict the sales from the stores in the next 6 weeks and it was inspired in a competition from Kaggle (https://www.kaggle.com/c/rossmann-store-sales). Data was downloaded from CSVs files, and it contains the information below. Sales is the response variable, and the goal of the project is to predict them, considering the other features.
+# **Business Problem:** 
+Rossmann is one of the largest drug store chains in Europe with more than 4000 stores. The company wants to settle a budget to renovate the stores, based on the sales that the stores will make in the next weeks. This project was developed to predict the sales from the stores in the next 6 weeks and it was inspired in a competition from Kaggle (https://www.kaggle.com/c/rossmann-store-sales). Data was downloaded from CSVs files, and it contains the information below. Sales is the response variable, and the goal of the project is to predict them, considering the other features.
 
 -**Id** - an Id that represents a (Store, Date) duple within the test set
 
@@ -34,17 +35,17 @@ holidays and weekends. a = public holiday, b = Easter holiday, c = Christmas, 0 
 
 -**Sales** - the turnover for any given day (this is what is going to be predicted) 
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# **Assumptions:** 
+Stores that have “Na” in “competition_distance”, don’t have any competitors nearby.
 
-**Assumptions:** Stores that have “Na” in “competition_distance”, don’t have any competitors nearby.
+# **Loading data:** 
+Three files that contain information from the stores, training and testing data were downloaded from the Kaggle platform. 
 
-**Solution Steps:**
+# **Descriptive analyses and data cleaning:** 
+The purpose of this step was to get familiarized with the data, and fill blank fields based on the business assumptions. Data was divided into categorical and numerical features.  To the numerical features, statistical numbers such as mean, median, standard deviation were calculated.  To the categorical features, boxplots were plotted to describe the data.**Feature Engineering:** The features "year", "month", "day", "week_of_year", "year_week", "competition_time_days" and "competition_time_month" were created from the original features. These features can be useful to explain the sales. 
 
-**Loading data:** Three files that contain information from the stores, training and testing data were downloaded from the Kaggle platform. 
-
-**Descriptive analyses and data cleaning:** The purpose of this step was to get familiarized with the data, and fill blank fields based on the business assumptions. Data was divided into categorical and numerical features.  To the numerical features, statistical numbers such as mean, median, standard deviation were calculated.  To the categorical features, boxplots were plotted to describe the data.**Feature Engineering:** The features "year", "month", "day", "week_of_year", "year_week", "competition_time_days" and "competition_time_month" were created from the original features. These features can be useful to explain the sales. 
-
-**Exploratory Data Analysis:** Univariate, bivariate and multivariate analysis were done to understand how features are related to the sales and to each other. Some hypotheses were created to validate how some of the features are related to the sales:
+# **Exploratory Data Analysis:** 
+Univariate, bivariate and multivariate analysis were done to understand how features are related to the sales and to each other. Some hypotheses were created to validate how some of the features are related to the sales:
 
 1)Stores that have competition nearby sell less - **False**
 ![h1](https://github.com/gkunzler/Rossman-Project-XGBoost/blob/main/img/hypothesys1.JPG)
@@ -55,16 +56,19 @@ holidays and weekends. a = public holiday, b = Easter holiday, c = Christmas, 0 
 3)Stores sell more in the last days of the month - **False**
 ![h3](https://github.com/gkunzler/Rossman-Project-XGBoost/blob/main/img/hypothesis3.JPG)
 
-**Data Preparing:**  Features that have a large range were rescaled. This step is important so that the model doesn’t provide a larger weight to these features. The features "competition_distance" and "competition_time_month" were rescaled using RobustScaler, that is robust to outliers. The features "promo_time_weeks" and "year" were rescaled using MinMaxScaler.
+# **Data Preparing:**  
+Features that have a large range were rescaled. This step is important so that the model doesn’t provide a larger weight to these features. The features "competition_distance" and "competition_time_month" were rescaled using RobustScaler, that is robust to outliers. The features "promo_time_weeks" and "year" were rescaled using MinMaxScaler.
 
 Categorical features were transformed into numerical features, so that they can also be used in the model. The features "state_holiday", "store_type" and "assortment" were transformed respectively by the "one hot encoding", "label encoding" and "ordinal encoding" algorithms.
 Features that have cyclical nature, such as "day_of_week", "month, day" and "week_of_year" were also transformed using sine and cosine, so that the machine learning model could better understand them.
 
 The response variable "sales" was normalized applying the logarithm to the original values. Machine Learning models work better with features that are normalized.
 
-**Feature Selection:** Features that were considered relevant to explain the response variable "sales" were selected to be used in the machine learning model.  The selection was made using Boruta, that is an algorithm designed to automatically perform feature selection on a dataset. The features selected were: "store", "promo", "store_type", "assortment", "competition_distance", "competition_open_since_month", "competition_open_since_year", "promo2","promo2_since_week", "promo2_since_year", "competition_time_month", "promo_time_weeks", "day_of_week_sin", "day_of_week_cos", "month_sin", "month_cos", "day_sin",  "day_cos", "week_of_year_sin", "week_of_year_cos"
+# **Feature Selection:** 
+Features that were considered relevant to explain the response variable "sales" were selected to be used in the machine learning model.  The selection was made using Boruta, that is an algorithm designed to automatically perform feature selection on a dataset. The features selected were: "store", "promo", "store_type", "assortment", "competition_distance", "competition_open_since_month", "competition_open_since_year", "promo2","promo2_since_week", "promo2_since_year", "competition_time_month", "promo_time_weeks", "day_of_week_sin", "day_of_week_cos", "month_sin", "month_cos", "day_sin",  "day_cos", "week_of_year_sin", "week_of_year_cos"
 
-**Machine Learning Modeling:** Four models were implemented, and the error from these models were calculated, to compare which model should be used.
+# **Machine Learning Modeling:** 
+Four models were implemented, and the error from these models were calculated, to compare which model should be used.
 
 **-Average Model:** It considers the mean sales value from each store, to predict the sales.
 
@@ -82,9 +86,11 @@ For each model the errors MAE, MAPE and RMSE were calculated.  The errors consid
 |Linear Regression|	2082.37 +/- 295.54|	0.3 +/- 0.02|	2953.01 +/- 467.76|
 |Lasso|	2116.38 +/- 341.5|	0.29 +/- 0.01|	3057.75 +/- 504.26|
 
-**Hyperparameter fine tuning:** Machine learning models have hyperparameters that you must set in order to customize the model to your dataset. In order to optimize these parameters, the model was run using random values of parameter, and the error was calculated to each set of parameters.  The set of parameters that presented the smallest error was chosen.
+# **Hyperparameter fine tuning:** 
+Machine learning models have hyperparameters that you must set in order to customize the model to your dataset. In order to optimize these parameters, the model was run using random values of parameter, and the error was calculated to each set of parameters.  The set of parameters that presented the smallest error was chosen.
 
-**Interpreting the error:** MAE is the mean absolute error. It uses the same scale as the data being measured 
+# **Interpreting the error:** 
+MAE is the mean absolute error. It uses the same scale as the data being measured 
 The best scenario considered the prediction of sales + MAE 
 The worst scenario considered the prediciton of saled - MAE 
 The table below shows 10 stores and the predictions of sales, worst scenarios, best scenarios, MAE and MAPE 
@@ -101,7 +107,8 @@ The table below shows 10 stores and the predictions of sales, worst scenarios, b
 |595|413537.625000|416663.986170|410411.263830|3126.361170|0.212382|
 |1073|283675.062500|285643.469120|281706.655880|1968.406620|0.211750|
 
-**Total Performance:**  In the table below, it can be seen the total sales predictions considering all stores, the best scenario and the worst scenario of sales:
+# **Total Performance:**  
+In the table below, it can be seen the total sales predictions considering all stores, the best scenario and the worst scenario of sales:
 
 |Scenario|	Total Sales|
 |--------|-------------|
@@ -110,5 +117,6 @@ The table below shows 10 stores and the predictions of sales, worst scenarios, b
 |Worsts Scenario|R$283,408,168.78|
 
 
-**Deploy model to production:** The model was deployed in Heroku cloud, and a bot in telegram was created to access the results. The user needs to enter / + the number of the store, and a message with the sales predictions will be sent back to him. 
+# **Deploy model to production:**
+The model was deployed in Heroku cloud, and a bot in telegram was created to access the results. The user needs to enter / + the number of the store, and a message with the sales predictions will be sent back to him. 
 ![rossman bot](https://github.com/gkunzler/Rossman-Project-XGBoost/blob/main/rossman_bot_telegram.JPG)
